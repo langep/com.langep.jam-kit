@@ -1,7 +1,7 @@
 ﻿using System;
 using UniRx;
 
-namespace Langep.Unity.Tools.Events
+namespace Langep.JamKit.Events
 {
     public class EventBus: IEventBus
     {

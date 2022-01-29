@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Langep.Unity.Tools.Systems
+namespace Langep.JamKit.Systems
 {
     public abstract class System : ScriptableObject
     {

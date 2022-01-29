@@ -1,4 +1,4 @@
-﻿namespace Langep.Unity.Tools.FSM
+﻿namespace Langep.JamKit.FSM
 {
     public abstract class State<TState, TContext>: IState<TState, TContext> where TContext : IContext<TState, TContext> where TState : State<TState, TContext>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Langep.Unity.Tools.FSM
+namespace Langep.JamKit.FSM
 {
     public class MappedDelegateFactory<TState> : IFactory<TState>
     {

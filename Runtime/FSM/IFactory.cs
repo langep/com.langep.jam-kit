@@ -1,4 +1,4 @@
-﻿namespace Langep.Unity.Tools.FSM
+﻿namespace Langep.JamKit.FSM
 {
     public interface IFactory<TState>
     {

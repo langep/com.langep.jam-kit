@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
- namespace Langep.Unity.Tools.Singletons
+namespace Langep.JamKit.Singletons
 {
     public abstract class Singleton<T> : MonoBehaviour where T : Component
     {

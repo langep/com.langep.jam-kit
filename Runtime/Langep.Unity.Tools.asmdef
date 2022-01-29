@@ -1,6 +1,6 @@
 {
-    "name": "Langep.Unity.Tools",
-    "rootNamespace": "Langep.Unity.Tools",
+    "name": "Langep.JamKit",
+    "rootNamespace": "Langep.JamKit",
     "references": [
         "GUID:560b04d1a97f54a4e82edc0cbbb69285"
     ],

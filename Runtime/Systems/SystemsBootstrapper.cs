@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Langep.Unity.Tools.Singletons;
+using Langep.JamKit.Singletons;
 using UnityEngine;
 
-namespace Langep.Unity.Tools.Systems
+namespace Langep.JamKit.Systems
 {
     public class SystemsBootstrapper : Singleton<SystemsBootstrapper>
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 
-namespace Langep.Unity.Tools.DataStructures
+namespace Langep.JamKit.DataStructures
 {
     public class OrderedSet<T> : ICollection<T>
     {

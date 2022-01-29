@@ -1,7 +1,7 @@
 ﻿using System;
- using Langep.Unity.Tools.Singletons;
+using Langep.JamKit.Singletons;
 
- namespace Langep.Unity.Tools.Events
+namespace Langep.JamKit.Events
 {
     public class GlobalEventBus : Singleton<GlobalEventBus>, IEventBus
     {

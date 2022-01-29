@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Langep.Unity.Tools.DataStructures
+namespace Langep.JamKit.DataStructures
 {
     public class LimitedSizeOrderedSet<T>: OrderedSet<T>
     {

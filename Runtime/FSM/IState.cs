@@ -1,4 +1,4 @@
-﻿namespace Langep.Unity.Tools.FSM
+﻿namespace Langep.JamKit.FSM
 {
     public interface IState<TState, TContext> where TState : State<TState, TContext> where TContext: IContext<TState, TContext>
     {
