@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Langep.JamKit.Singletons;
+using Langep.JamKit.Utility;
 using UnityEngine;
 
 namespace Langep.JamKit.Systems
@@ -11,10 +11,8 @@ namespace Langep.JamKit.Systems
 
         public Transform HolderTransform => _holderObject.transform;
 
-        protected override void Awake()
+        protected void Awake()
         {
-            base.Awake();
-
             InitializeHolderObject();
             InitializeSystems();
         }

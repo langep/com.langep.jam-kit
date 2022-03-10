@@ -1,5 +1,5 @@
 ﻿using System;
-using Langep.JamKit.Singletons;
+using Langep.JamKit.Utility;
 
 namespace Langep.JamKit.Events
 {
