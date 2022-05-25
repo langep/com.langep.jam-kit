@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Langep.JamKit.Utility
@@ -29,7 +30,6 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 						{
 							Debug.LogWarning("[Singleton] There are " + all.Length + " instances of " + typeof(T) +
 							                 "... This may happen if your singleton is also a prefab, in which case there is nothing to worry about.");
-							return _instance;
 						}
 
 						if (_instance == null)
@@ -38,21 +38,30 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 							_instance = singleton.AddComponent<T>();
 							singleton.name = "(singleton) " + typeof(T).ToString();
 
-							if (Application.isPlaying)
-								DontDestroyOnLoad(singleton);
+							if (Application.isPlaying) DontDestroyOnLoad(singleton);
 
 							Debug.Log("[Singleton] An instance of " + typeof(T) + " is needed in the scene, so '" + singleton + "' was created with DontDestroyOnLoad.");
 						}
 						else
 						{
-							Debug.Log("[Singleton] Using instance already created: " +
-							          _instance.gameObject.name);
+							if (_instance.gameObject.scene.name != "DontDestroyOnLoad" && Application.isPlaying)
+							{
+								Debug.Log("[Singleton] Added DontDestroyOnLoad to existing: " +
+								          _instance.gameObject.name);
+								DontDestroyOnLoad(_instance.gameObject);
+							}
+							Debug.Log("[Singleton] Using instance already created: " + _instance.gameObject.name);
 						}
 					}
 
 					return _instance;
 				}
 			}
+		}
+
+		protected virtual void Awake()
+		{
+			if (Instance != this) Destroy(gameObject);
 		}
 
 		private static bool applicationIsQuitting = false;

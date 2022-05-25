@@ -11,8 +11,9 @@ namespace Langep.JamKit.Systems
 
         public Transform HolderTransform => _holderObject.transform;
 
-        protected void Awake()
+        protected override void Awake()
         {
+            base.Awake();
             InitializeHolderObject();
             InitializeSystems();
         }
