@@ -1,7 +1,7 @@
 {
   "name": "com.langep.jam-kit",
   "displayName": "Langep - Jam Kit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "unity": "2020.3",
   "description": "Collection of utility methods, design patterns, and extensions for Unity.",
   "dependencies": {
