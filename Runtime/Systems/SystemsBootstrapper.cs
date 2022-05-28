@@ -8,8 +8,10 @@ namespace Langep.JamKit.Systems
     {
         [SerializeField] private List<System> systems;
         private GameObject _holderObject;
+        private IServiceLocator _globalServiceLocator = new BasicServiceLocator();
 
         public Transform HolderTransform => _holderObject.transform;
+        public IServiceLocator GlobalServiceLocator => _globalServiceLocator;
 
         protected override void Awake()
         {
@@ -29,7 +31,7 @@ namespace Langep.JamKit.Systems
         {
             foreach (var system in systems)
             {
-                system.Initialize(_holderObject.transform);
+                system.Initialize(_holderObject.transform, _globalServiceLocator);
             }
         }
     }

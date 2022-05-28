@@ -7,6 +7,7 @@ namespace Langep.JamKit.Systems
     {
         [SerializeField] protected string systemName;
 
+        [NonSerialized] protected IServiceLocator serviceLocator;
         [NonSerialized] protected GameObject holderObject;
         [NonSerialized] private bool _isInitialized = false;
         
@@ -14,7 +15,7 @@ namespace Langep.JamKit.Systems
         /// Initializes the system.
         /// </summary>
         /// <param name="systemsHolder">The parent transform in the hierarchy.</param>
-        public void Initialize(Transform systemsHolder)
+        public void Initialize(Transform systemsHolder, IServiceLocator globalServiceLocator)
         {
             if (_isInitialized)
             {
@@ -22,6 +23,7 @@ namespace Langep.JamKit.Systems
                 return;
             }
 
+            InitializeServiceLocator(globalServiceLocator);
             InitializeHolderObject(systemsHolder.transform);
 
             _isInitialized = true;
@@ -69,11 +71,16 @@ namespace Langep.JamKit.Systems
             return propertyGetter();
         }
 
-        private void InitializeHolderObject(Transform parent)
+        protected void InitializeHolderObject(Transform parent)
         {
             var holder = new GameObject {name = systemName};
             holder.transform.parent = parent;
             holderObject = holder;
+        }
+        
+        protected void InitializeServiceLocator(IServiceLocator globalServiceLocator)
+        {
+            serviceLocator = new BasicServiceLocator(globalServiceLocator);
         }
         
         private void LazyInitialize()
@@ -81,7 +88,8 @@ namespace Langep.JamKit.Systems
             if (_isInitialized) return;
 
             var systemsHolder = SystemsBootstrapper.Instance.HolderTransform;
-            Initialize(systemsHolder);
+            var globalServiceLocator = SystemsBootstrapper.Instance.GlobalServiceLocator;
+            Initialize(systemsHolder, globalServiceLocator);
         }
     }
 }
