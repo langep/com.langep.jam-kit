@@ -2,7 +2,8 @@
     "name": "Langep.JamKit",
     "rootNamespace": "Langep.JamKit",
     "references": [
-        "GUID:560b04d1a97f54a4e82edc0cbbb69285"
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:b85a9b696dea92b4f9d0efe8b3f0e5b7"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

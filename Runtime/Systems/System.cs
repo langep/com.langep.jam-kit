@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Langep.JamKit.Systems
 {
-    public abstract class System : ScriptableObject
+    public abstract class System : ScriptableObject, IService
     {
         [SerializeField] protected string systemName;
-
-        [NonSerialized] protected IServiceLocator serviceLocator;
+        
         [NonSerialized] protected GameObject holderObject;
         [NonSerialized] private bool _isInitialized = false;
         
@@ -15,7 +16,7 @@ namespace Langep.JamKit.Systems
         /// Initializes the system.
         /// </summary>
         /// <param name="systemsHolder">The parent transform in the hierarchy.</param>
-        public void Initialize(Transform systemsHolder, IServiceLocator globalServiceLocator)
+        public void Initialize(Transform systemsHolder)
         {
             if (_isInitialized)
             {
@@ -23,13 +24,17 @@ namespace Langep.JamKit.Systems
                 return;
             }
 
-            InitializeServiceLocator(globalServiceLocator);
             InitializeHolderObject(systemsHolder.transform);
 
-            _isInitialized = true;
             OnInitialize();
+            _isInitialized = true;
         }
-        
+
+        public virtual IEnumerable<Type> ProvidedServices()
+        {
+            return Enumerable.Empty<Type>();
+        }
+
         /// <summary>
         /// Override this to implement custom initialization logic.
         /// </summary>
@@ -78,18 +83,12 @@ namespace Langep.JamKit.Systems
             holderObject = holder;
         }
         
-        protected void InitializeServiceLocator(IServiceLocator globalServiceLocator)
-        {
-            serviceLocator = new BasicServiceLocator(globalServiceLocator);
-        }
-        
         private void LazyInitialize()
         {
             if (_isInitialized) return;
 
             var systemsHolder = SystemsBootstrapper.Instance.HolderTransform;
-            var globalServiceLocator = SystemsBootstrapper.Instance.GlobalServiceLocator;
-            Initialize(systemsHolder, globalServiceLocator);
+            Initialize(systemsHolder);
         }
     }
 }

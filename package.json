@@ -5,7 +5,8 @@
   "unity": "2020.3",
   "description": "Collection of utility methods, design patterns, and extensions for Unity.",
   "dependencies": {
-    "com.neuecc.unirx": "7.1.0"
+    "com.neuecc.unirx": "7.1.0",
+    "com.demigiant.dotween": "1.2.632"
   },
   "keywords": [
     "pattern",

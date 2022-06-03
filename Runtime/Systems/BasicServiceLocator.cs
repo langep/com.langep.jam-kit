@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Concurrent;
+using UnityEngine;
 
 namespace Langep.JamKit.Systems
 {
@@ -35,10 +36,14 @@ namespace Langep.JamKit.Systems
                     _services.TryGetValue(key, out service);
                     break;
                 case ServiceLocatorLookupMode.Parent:
+                    _services.TryGetValue(key, out service);
+                    if (_services != null) break;
                     if (!_hasParentLocator) break;
                     service = _parentLocator.LocateService<T>(serviceKey, ServiceLocatorLookupMode.Local);
                     break;
                 case ServiceLocatorLookupMode.Fallback:
+                    _services.TryGetValue(key, out service);
+                    if (_services != null) break;
                     if (!_hasParentLocator) break;
                     service = _parentLocator.LocateService<T>(serviceKey, ServiceLocatorLookupMode.Fallback);
                     break;
@@ -46,6 +51,15 @@ namespace Langep.JamKit.Systems
                     throw new ArgumentOutOfRangeException(nameof(lookupMode), lookupMode, null);
             }
 
+            if (service == null)
+            {
+                Debug.Log($"couldn't find {key}");
+                foreach (var k in _services.Keys)
+                {
+                    Debug.Log($"contains {k}: {_services[k]}");    
+                }
+            }
+            
             return service != null ? (T) service : default(T);
 
         }
