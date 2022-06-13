@@ -24,6 +24,8 @@ namespace Langep.JamKit.UI
         [SerializeField] private UnityEvent _postPushAction;
         [SerializeField] private UnityEvent _prePopAction;        
         [SerializeField] private UnityEvent _postPopAction;
+        [SerializeField] private UnityEvent _onEnterAlways;
+        [SerializeField] private UnityEvent _onExitAlways;
         
 
         private RectTransform _rectTransform;
@@ -54,6 +56,16 @@ namespace Langep.JamKit.UI
                     SlideIn();
                     break;
             }
+        }
+
+        public void OnEnterAlways()
+        {
+            _onEnterAlways?.Invoke();
+        }
+        
+        public void OnExitAlways()
+        {
+            _onExitAlways?.Invoke();
         }
 
         public void Exit()

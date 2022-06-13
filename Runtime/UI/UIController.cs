@@ -42,11 +42,13 @@ namespace Langep.JamKit.UI
 
         public void PushScreen(UIScreen screen)
         {
+            screen.OnEnterAlways();
             screen.Enter();
 
             if (_stack.Count > 0)
             {
                 var currentScreen = _stack.Peek();
+                currentScreen.OnExitAlways();
                 if (currentScreen.ExitOnNewScreenPush)
                 {
                     currentScreen.Exit();
@@ -66,9 +68,11 @@ namespace Langep.JamKit.UI
             }
 
             var screen = _stack.Pop();
+            screen.OnEnterAlways();
             screen.Exit();
 
             screen = _stack.Peek();
+            screen.OnEnterAlways();
             if (screen.ExitOnNewScreenPush)
             {
                 screen.Enter();

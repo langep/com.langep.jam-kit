@@ -15,6 +15,12 @@ namespace Langep.JamKit.UI
         public IEnumerator FadeIn(CanvasGroup canvasGroup, float duration, UnityEvent onEnd)
         {
             canvasGroup.alpha = 0;
+            var rectTransform = canvasGroup.GetComponent<RectTransform>();
+            if (rectTransform)
+            {
+                rectTransform.anchoredPosition = Vector2.zero;
+            }
+            
             var tween = canvasGroup.DOFade(1, duration).SetEase(Ease.InOutSine);
             tween.OnComplete(() => onEnd?.Invoke());
             yield return tween.WaitForCompletion();
@@ -25,6 +31,11 @@ namespace Langep.JamKit.UI
             var tween = canvasGroup.DOFade(0, duration).SetEase(Ease.InOutSine);
             tween.OnComplete(() => onEnd?.Invoke());
             yield return tween.WaitForCompletion();
+            var rectTransform = canvasGroup.GetComponent<RectTransform>();
+            if (rectTransform)
+            {
+                rectTransform.anchoredPosition = new Vector2(0, Screen.height);
+            }
         }
 
         public IEnumerator SlideIn(RectTransform transform, Direction direction, float duration, UnityEvent onEnd)

@@ -15,13 +15,13 @@ namespace Langep.JamKit.Systems
 
         public T GetService<T>(Type serviceKey = null) where T : IService
         {
-            Debug.Log($"GetService: {GetInstanceID()}" );
             return _systemLocator.LocateService<T>(serviceKey);
         }
         
         protected override void Awake()
         {
             base.Awake();
+            DontDestroyOnLoad(gameObject);
             InitializeHolderObject();
             InitializeSystems();
         }
@@ -35,7 +35,6 @@ namespace Langep.JamKit.Systems
 
         private void InitializeSystems()
         {
-            Debug.Log($"InitializeSystems: {GetInstanceID()}" );
             _systemLocator = new BasicServiceLocator();
             foreach (var system in systems)
             {
