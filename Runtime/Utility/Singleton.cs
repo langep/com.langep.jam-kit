@@ -30,7 +30,7 @@ namespace Langep.JamKit.Utility
             if(_instance==null) _instance = gameObject.GetComponent<T>();
             else if(_instance.GetInstanceID()!=GetInstanceID()){
                 Destroy(gameObject);
-                throw new System.Exception($"Instance of {GetType().FullName} already exists, removing {ToString()}");
+                Debug.LogWarning($"Instance of {GetType().FullName} already exists, removing {ToString()}");
             }
         }
 
